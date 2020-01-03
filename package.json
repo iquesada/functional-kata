@@ -1,0 +1,23 @@
+{
+  "name": "functional-kata",
+  "version": "1.0.0",
+  "description": "Node JS environment for coding Kata",
+  "main": "index.js",
+  "scripts": {
+    "test": "supervisor -q -n exit -x ./node_modules/.bin/mocha -- -b"
+  },
+  "keywords": [
+    "kata",
+    "test",
+    "node",
+    "js"
+  ],
+  "author": "Iñaki Quesada <piedresybarro@gmail.com>",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "6.2.0",
+    "sinon": "7.4.2",
+    "supervisor": "0.12.0"
+  }
+}
