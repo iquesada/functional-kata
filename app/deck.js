@@ -18,6 +18,10 @@ class Deck {
       [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
   }
+
+  deal(handSize) {
+    return this.cards.splice(0, handSize);
+  }
 }
 
 module.exports = Deck;
