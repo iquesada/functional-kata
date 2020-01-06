@@ -17,7 +17,6 @@ describe('Deck', () => {
       const initialCards = [...deck.getCards()];
 
       deck.shuffle();
-      console.log(deck.getCards());
 
       expect(initialCards).not.eql(deck.getCards());
     })
