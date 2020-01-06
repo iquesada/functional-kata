@@ -30,7 +30,7 @@ describe('Deck', () => {
       const hand = deck.deal(handSize);
 
       expect(hand.length).equal(handSize);
-      expect(deck.getCards().length).equal(52 - handSize);
+      expect(52 - handSize).equal(deck.getCards().length);
     })
   });
 });

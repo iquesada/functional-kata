@@ -1,3 +1,5 @@
+const R = require('rambda');
+
 class Deck {
   constructor() {
     let suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
@@ -20,7 +22,11 @@ class Deck {
   }
 
   deal(handSize) {
-    return this.cards.splice(0, handSize);
+    const hand = R.take(handSize, this.cards);
+    const notInDeck = card => !hand.includes(card);
+    this.cards = R.filter(notInDeck, this.cards);
+
+    return hand;
   }
 }
 
