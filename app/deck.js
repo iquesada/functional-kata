@@ -1,13 +1,15 @@
-const R = require('rambda');
+const R = require('ramda');
 
 class Deck {
   constructor() {
     const suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
     const playingCards = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
-    this.cards = []
-    for(let i = 0; i < suits.length; i++)
-      for(let j = 0; j < playingCards.length; j++)
-        this.cards = R.concat(this.cards, [playingCards[j] + " of " + suits[i]]);
+
+    const join = card => card[0] + " of " + card[1];
+    const joinCards = cards => R.map(join, cards);
+    const createCards = R.pipe(R.xprod, joinCards);
+
+    this.cards = createCards(playingCards, suits);
   }
 
   getCards() {
