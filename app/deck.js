@@ -23,7 +23,7 @@ class Deck {
 
   deal(handSize) {
     const hand = R.take(handSize, this.cards);
-    const notInDeck = card => !hand.includes(card);
+    const notInDeck = card => !R.includes(card, hand);
     this.cards = R.filter(notInDeck, this.cards);
 
     return hand;
