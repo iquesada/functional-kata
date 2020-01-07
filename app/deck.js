@@ -1,7 +1,7 @@
 const R = require('ramda');
 
-class Deck {
-  constructor() {
+module.exports = {
+  create: () => {
     const suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
     const playingCards = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"]
 
@@ -9,26 +9,20 @@ class Deck {
     const joinCards = cards => R.map(join, cards);
     const createCards = R.pipe(R.xprod, joinCards);
 
-    this.cards = createCards(playingCards, suits);
-  }
+    return createCards(playingCards, suits);
+  },
 
-  getCards() {
-    return this.cards;
-  }
-
-  shuffle() {
+  shuffle: (cards) => {
     const random = (a, b) => Math.random() >= 0.5;
 
-    this.cards = R.sort(random, this.cards);
-  }
+    return R.sort(random, cards);
+  },
 
-  deal(handSize) {
-    const hand = R.take(handSize, this.cards);
+  deal: (cards, handSize) => {
+    const hand = R.take(handSize, cards);
     const notInDeck = card => !R.includes(card, hand);
-    this.cards = R.filter(notInDeck, this.cards);
+    const dealedCards = R.filter(notInDeck, cards);
 
-    return hand;
+    return [dealedCards, hand];
   }
-}
-
-module.exports = Deck;
+};
